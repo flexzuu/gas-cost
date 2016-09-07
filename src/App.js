@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import moment from 'moment';
-import logo from './logo.svg';
-import './App.css';
-import GasTable from './GasTable.js';
+import logo from 'logo.svg';
+import 'App.css';
+import GasTable from 'GasTable';
 class App extends Component {
   constructor(props){
     super(props);

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './GasTable.css';
+import 'GasTable.css';
 
 function Row({type, price}) {
   return (
