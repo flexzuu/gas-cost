@@ -1,0 +1,23 @@
+.gas {
+  width: 100%;
+  list-style: none;
+  padding: 15px;
+}
+.gas tr {
+  display: block;
+  height: 18px;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+  border-bottom: solid 1px black;
+}
+.gas .title {
+  font-weight: bold;
+  float: left;
+  clear: both;
+}
+.gas .price {
+  float: right;
+}
+.gas td {
+  color: #424242;
+}

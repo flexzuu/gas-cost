@@ -1,0 +1,10 @@
+localhost {
+	root ./build
+	proxy /kfz http://www.globus.de
+  rewrite / {
+		if {path} not_match kfz.*
+    to {path} /
+  }
+	gzip
+	log stdout
+}
