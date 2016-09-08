@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import moment from 'moment';
+import TimeAgo from 'react-timeago';
 import logo from 'logo.svg';
 import 'App.css';
 import GasTable from 'GasTable';
@@ -17,7 +17,7 @@ class App extends Component {
         superplus: 0,
         datum: null
       },
-      lastUpdated: "Never...",
+      lastUpdated: null,
       spin: true
     }
   }
@@ -33,7 +33,7 @@ class App extends Component {
     }).then((json) => {
         this.setState({
           prices: json,
-          lastUpdated: moment(parseInt(json.datum, 10)).fromNow(),
+          lastUpdated: parseInt(json.datum, 10),
           spin: false
         });
     });
@@ -44,7 +44,7 @@ class App extends Component {
         <div className="App-header">
           <img src={logo} className={this.state.spin ? "App-logo spin": "App-logo"} alt="logo" />
           <h2>Globus Tankstelle Dutenhofen</h2>
-          <h3>Last updated: {this.state.lastUpdated}</h3>
+          <h3>Last updated: <TimeAgo date={this.state.lastUpdated} /></h3>
         </div>
         <GasTable prices={this.state.prices} toHide={["datum", "biodiesel", "erdgas"]}/>
       </div>
