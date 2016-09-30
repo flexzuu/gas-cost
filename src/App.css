@@ -15,6 +15,11 @@
   color: white;
 }
 
+.gasPrices {
+  max-width: 800px;
+  margin: auto;
+}
+
 .App-intro {
   font-size: large;
 }
