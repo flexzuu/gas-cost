@@ -12,7 +12,7 @@ const PriceTrend = ({data, colors}) => {
   const domain = {
    };
   return (
-    <div style={{maxWidth: '500px'}}>
+    <div>
       <VictoryChart
         height={300}
         width={400}

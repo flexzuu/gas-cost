@@ -29,7 +29,7 @@ const GasPrices = ({data}) => {
   if(!data.loading){
     const {lastGasData, allGasData} = data;
     return (
-      <div>
+      <div className="gasPrices">
         <GasTable data={[
           {
             label: 'Super (E10)',
