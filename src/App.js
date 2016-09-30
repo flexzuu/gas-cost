@@ -1,55 +1,63 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 import TimeAgo from 'react-timeago';
-import logo from 'logo.svg';
 import 'App.css';
 import GasTable from 'GasTable';
-class App extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      prices: {
-        autogas: 0,
-        diesel: 0,
-        erdgas: 0,
-        supere5: 0,
-        biodiesel: 0,
-        supere10: 0,
-        superplus: 0,
-        datum: null
-      },
-      lastUpdated: null,
-      spin: true
-    }
+import PriceTrend from 'PriceTrend';
+const query = gql`{
+  lastGasData {
+    lastUpdated
+    e10
+    diesel
   }
-  componentDidMount() {
-    fetch('/kfz?markt=dut', {
-      method: 'get',
-      headers: new Headers({
-		      'Content-Type': 'text/plain'
-	   })
-    })
-    .then((res) => {
-        return res.json();
-    }).then((json) => {
-        this.setState({
-          prices: json,
-          lastUpdated: parseInt(json.datum, 10),
-          spin: false
-        });
-    });
+  allGasData(last: 7) {
+    e10
+    diesel
+    lastUpdated
   }
-  render() {
+}`;
+const colors = ['#03a9f4', '#9c27b0'];
+const LastUpdated = ({data}) => {
+  if(!data.loading){
+    const {lastGasData} = data;
+    return <TimeAgo date={lastGasData.lastUpdated} />
+  }
+  return <pan>Loading...</pan>
+};
+const GasPrices = ({data}) => {
+  if(!data.loading){
+    const {lastGasData, allGasData} = data;
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className={this.state.spin ? "App-logo spin": "App-logo"} alt="logo" />
-          <h2>Globus Tankstelle Dutenhofen</h2>
-          <h3>Last updated: <TimeAgo date={this.state.lastUpdated} /></h3>
-        </div>
-        <GasTable prices={this.state.prices} toHide={["datum", "biodiesel", "erdgas"]}/>
+      <div>
+        <GasTable data={[
+          {
+            label: 'Super (E10)',
+            price: lastGasData.e10,
+            color: colors[0],
+          },
+          {
+            label: 'Diesel',
+            price: lastGasData.diesel,
+            color: colors[1],
+          }
+        ]} />
+      <PriceTrend data={allGasData} colors={colors} />
       </div>
-    );
+  );
   }
-}
+  return <pan>Loading...</pan>
+};
+const App = ({data}) => {
+  return (
+  <div className="App">
+    <div className="App-header">
+      <h2>Globus Tankstelle Dutenhofen</h2>
+      <h3>Last updated: <LastUpdated data={data} /></h3>
+    </div>
+    <GasPrices data={data}/>
+  </div>
+)};
 
-export default App;
+
+export default graphql(query)(App);
