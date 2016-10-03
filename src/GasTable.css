@@ -18,6 +18,9 @@
 .gas .price {
   float: right;
 }
+.gas .price.reduced {
+  margin-right: 10px;
+}
 .gas td {
   color: #424242;
 }
