@@ -8,11 +8,11 @@ import PriceTrend from 'PriceTrend';
 const query = gql`{
   lastGasData {
     lastUpdated
-    e10
+    e5
     diesel
   }
   allGasData(last: 7) {
-    e10
+    e5
     diesel
     lastUpdated
   }
@@ -32,8 +32,8 @@ const GasPrices = ({data}) => {
       <div className="gasPrices">
         <GasTable data={[
           {
-            label: 'Super (E10)',
-            price: lastGasData.e10,
+            label: 'Super (E5)',
+            price: lastGasData.e5,
             color: colors[0],
           },
           {

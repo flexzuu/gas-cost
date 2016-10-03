@@ -6,7 +6,7 @@ const PriceTrend = ({data, colors}) => {
     x: new Date(val.lastUpdated),
     y: val[fu],
   });
-  const e10 = data.reverse().map(dataAccess('e10'));
+  const e5 = data.reverse().map(dataAccess('e5'));
   const diesel = data.reverse().map(dataAccess('diesel'));
   const ticks = data.reverse().map((val)=>new Date(val.lastUpdated));
   // const domain = {y:[0.8,1.6]};
@@ -21,7 +21,7 @@ const PriceTrend = ({data, colors}) => {
         <VictoryAxis padding={100} label="Datum" tickValues={ticks} tickFormat={(x) => `${x.getDate()}.${x.getMonth()}`} style={{axisLabel: { padding: 30}}} />
         <VictoryAxis label="Preis" dependentAxis style={{axisLabel: { padding: 38}}}/>
         <VictoryLine
-          data={e10}
+          data={e5}
           style={{
             data: {stroke: colors[0]}
           }}
@@ -38,7 +38,7 @@ const PriceTrend = ({data, colors}) => {
               padding: 12
             }
           }}
-          data={e10}
+          data={e5}
           size={4}
           labels={(val) => `${val.y}€`}
           standalone={false}
