@@ -1,5 +1,5 @@
 import React from 'react';
-import {VictoryChart, VictoryLine, VictoryAxis, VictoryTheme, VictoryScatter} from 'victory';
+import {VictoryChart, VictoryLine, VictoryAxis, VictoryTheme, VictoryScatter, VictoryLabel} from 'victory';
 
 const PriceTrend = ({data, colors}) => {
   const dataAccess = (fu) => (val, index) =>({
@@ -14,12 +14,27 @@ const PriceTrend = ({data, colors}) => {
     <div>
       <VictoryChart
         height={300}
-        width={400}
+        width={600}
         theme={VictoryTheme.material}
         padding={80}
       >
-        <VictoryAxis padding={100} label="Datum" tickValues={ticks} tickFormat={(x) => `${x.getDate()}.${x.getMonth()}`} style={{axisLabel: { padding: 30}}} />
-        <VictoryAxis label="Preis" dependentAxis style={{axisLabel: { padding: 38}}}/>
+        <VictoryAxis
+          padding={100}
+          tickValues={ticks}
+          tickFormat={(x) => `
+            ${x.toLocaleDateString('de-DE',{ weekday: 'short', month: 'short', day: 'numeric' })} ${x.toLocaleTimeString('de-DE').substr(0,5)}`}
+          tickLabelComponent={<VictoryLabel angle={45} dx={30}/>}
+          style={{
+            axisLabel: { padding: 55 },
+          }}
+        />
+        <VictoryAxis
+          label="Preis"
+          dependentAxis
+          tickLabelComponent={<VictoryLabel angle={45}/>}
+          style={{
+            axisLabel: { padding: 30 },
+          }}        />
         <VictoryLine
           data={e5}
           style={{

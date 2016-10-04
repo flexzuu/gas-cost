@@ -13,7 +13,7 @@ const GasTable = ({data}) => {
   return (
       <table className="gas">
         <thead>
-          <tr><th className="label">TYPE</th><th className="price">PRICE</th><th className="price reduced">PRICE REDUCED</th></tr>
+          <tr><th className="label">ART</th><th className="price">PREIS</th><th className="price reduced">- 4 CENT</th></tr>
         </thead>
         <tbody>
           {
