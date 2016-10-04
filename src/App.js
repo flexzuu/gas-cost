@@ -5,6 +5,7 @@ import TimeAgo from 'react-timeago';
 import 'App.css';
 import GasTable from 'GasTable';
 import PriceTrend from 'PriceTrend';
+import spinner from 'spinner.svg';
 const query = gql`{
   lastGasData {
     lastUpdated
@@ -42,11 +43,15 @@ const GasPrices = ({data}) => {
             color: colors[1],
           }
         ]} />
-      <PriceTrend data={allGasData} colors={colors} />
+        <PriceTrend data={allGasData} colors={colors} />
       </div>
   );
   }
-  return <pan>Loading...</pan>
+  return (
+    <div className="loading">
+      <img src={spinner} alt="spinner" />
+    </div>
+  );
 };
 const App = ({data}) => {
   return (
