@@ -13,8 +13,8 @@ const PriceTrend = ({data, colors}) => {
   return (
     <div>
       <VictoryChart
-        height={300}
-        width={600}
+        height={400}
+        width={800}
         theme={VictoryTheme.material}
         padding={80}
       >
@@ -49,7 +49,6 @@ const PriceTrend = ({data, colors}) => {
             },
             labels: {
               fill: colors[0],
-              fontSize: 11,
               padding: 12
             }
           }}
@@ -73,7 +72,6 @@ const PriceTrend = ({data, colors}) => {
             },
             labels: {
               fill: colors[1],
-              fontSize: 11,
               padding: 12
             }
           }}
