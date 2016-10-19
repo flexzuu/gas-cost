@@ -40,6 +40,7 @@ const PriceTrend = ({data, colors}) => {
           style={{
             data: {stroke: colors[0]}
           }}
+          interpolation="stepAfter"
         />
         <VictoryScatter
           style={{
@@ -63,6 +64,7 @@ const PriceTrend = ({data, colors}) => {
           style={{
             data: {stroke: colors[1]}
           }}
+          interpolation="stepAfter"
         />
         <VictoryScatter
           style={{

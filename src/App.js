@@ -14,7 +14,7 @@ const query = gql`{
     e5
     diesel
   }
-  allGasData(last: 7) {
+  allGasData(last: 14) {
     e5
     diesel
     lastUpdated
